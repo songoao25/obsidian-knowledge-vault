@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.ext == "md"
+    - file.inFolder("20 工作")
+views:
+  - type: table
+    name: 工作知识与 SOP
+    order:
+      - file.name
+      - file.folder
+      - file.mtime

@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.ext == "md"
+    - file.inFolder("10 生活")
+views:
+  - type: table
+    name: 生活资料
+    order:
+      - file.name
+      - file.folder
+      - file.mtime

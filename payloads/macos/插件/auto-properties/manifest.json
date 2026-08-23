@@ -1,0 +1,9 @@
+{
+  "id": "knowledge-vault-auto-properties",
+  "name": "Auto Properties",
+  "version": "0.1.1",
+  "minAppVersion": "1.4.0",
+  "description": "Adds and reconciles the vault's managed frontmatter properties for new and moved Markdown notes.",
+  "author": "knowledge-vault maintainers",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,13 @@
+filters:
+  and:
+    - file.ext == "md"
+views:
+  - type: table
+    name: 最近更新
+    order:
+      - file.name
+      - file.folder
+      - file.mtime
+    sort:
+      - property: file.mtime
+        direction: DESC

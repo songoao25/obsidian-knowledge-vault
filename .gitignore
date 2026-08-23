@@ -1,0 +1,21 @@
+# 本仓库（发布仓库）gitignore
+
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.log
+*.sqlite*
+*.db
+*.tmp
+scan-report.md
+.venv/
+.env
+.env.*
+.envrc
+.state/
+**/.state/
+evidence/
+**/evidence/
+*.plist.tpl.bak

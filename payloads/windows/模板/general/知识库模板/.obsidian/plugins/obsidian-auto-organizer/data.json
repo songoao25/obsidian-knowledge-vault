@@ -1,0 +1,17 @@
+{
+  "delayMs": 500,
+  "fallbackTags": ["kind/note"],
+  "pathDefaults": {
+    "00 收件箱": ["kind/note", "workflow/inbox"],
+    "10 生活": ["kind/note"],
+    "20 工作": ["kind/note"],
+    "20 工作/29 SOP": ["kind/method"],
+    "30 学习": ["kind/note"],
+    "40 记录": ["kind/record"],
+    "90 系统/91 首页与视图": ["kind/method", "topic/obsidian", "topic/knowledge-management", "project/knowledge-vault"],
+    "90 系统/92 维护规范": ["kind/rule", "topic/knowledge-management", "project/knowledge-vault"],
+    "90 系统/93 模板": ["kind/template"],
+    "90 系统/94 维护记录": ["kind/maintenance-log", "topic/automation", "project/knowledge-vault"],
+    "90 系统/95 原始输入归档": ["kind/raw-input"]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "obsidian-auto-organizer",
+  "name": "Auto Properties",
+  "version": "0.2.0",
+  "minAppVersion": "1.4.0",
+  "description": "Adds and reconciles the vault's managed frontmatter properties for new and moved Markdown notes.",
+  "author": "Obsidian Auto Organizer",
+  "isDesktopOnly": false
+}

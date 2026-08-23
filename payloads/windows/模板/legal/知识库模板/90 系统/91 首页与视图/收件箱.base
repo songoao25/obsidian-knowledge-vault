@@ -1,0 +1,10 @@
+filters:
+  and:
+    - file.ext == "md"
+    - file.inFolder("00 收件箱")
+views:
+  - type: table
+    name: 当前收件箱
+    order:
+      - file.name
+      - file.mtime

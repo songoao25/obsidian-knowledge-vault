@@ -1,0 +1,9 @@
+{
+  "file-explorer": true,
+  "global-search": true,
+  "tag-pane": true,
+  "properties": true,
+  "templates": true,
+  "command-palette": true,
+  "bases": true
+}

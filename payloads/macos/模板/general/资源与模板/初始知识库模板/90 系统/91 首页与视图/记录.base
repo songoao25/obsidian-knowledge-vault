@@ -1,0 +1,11 @@
+filters:
+  and:
+    - file.ext == "md"
+    - file.inFolder("40 记录")
+views:
+  - type: table
+    name: 时间记录
+    order:
+      - file.name
+      - file.folder
+      - file.mtime
