@@ -1,66 +1,89 @@
 # Obsidian Knowledge Vault
 
-[![Privacy gate](https://github.com/songoao25/obsidian-knowledge-vault/actions/workflows/privacy-gate.yml/badge.svg)](https://github.com/songoao25/obsidian-knowledge-vault/actions/workflows/privacy-gate.yml)
-[![Release tests](https://github.com/songoao25/obsidian-knowledge-vault/actions/workflows/test.yml/badge.svg)](https://github.com/songoao25/obsidian-knowledge-vault/actions/workflows/test.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Platforms: macOS and Windows](https://img.shields.io/badge/platform-macOS%20%7C%20Windows-555555)](#quick-start)
+**English** | [**中文**](README.zh-CN.md)
 
-Obsidian Knowledge Vault creates a safe, automated starting point for a new
-Obsidian vault. Choose a template, choose when it runs, connect an AI provider
-you trust, and use one inbox for material you want organized.
+[![Release](https://img.shields.io/github/v/release/songoao25/obsidian-knowledge-vault)](https://github.com/songoao25/obsidian-knowledge-vault/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/songoao25/obsidian-knowledge-vault/test.yml?branch=main)](https://github.com/songoao25/obsidian-knowledge-vault/actions)
+[![CodeQL](https://img.shields.io/github/actions/workflow/status/songoao25/obsidian-knowledge-vault/codeql.yml?label=CodeQL)](https://github.com/songoao25/obsidian-knowledge-vault/security/code-scanning)
+[![License](https://img.shields.io/github/license/songoao25/obsidian-knowledge-vault)](LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/songoao25/obsidian-knowledge-vault)](https://github.com/songoao25/obsidian-knowledge-vault/commits/main)
 
-中文说明见 [docs/zh-CN](docs/zh-CN/README.md)。
+Create a safe, automated starting point for a **new Obsidian vault**. Choose a
+General or Legal template, choose when organization runs, connect an AI provider
+you trust, and send material to one inbox for structured processing.
 
-## What it includes
+## What it is
 
-- **General template** for life, work, learning, records, and system rules.
-- **Legal template** with the same core structure and a legal-profession work
-  taxonomy.
-- A macOS and Windows installer that asks for the template, schedule, and AI
-  provider.
-- DeepSeek, ChatGPT desktop on macOS, and OpenAI-compatible provider choices.
-- Local, transactional organization rules: the AI returns constrained plans;
-  local software validates and writes files.
+Obsidian Knowledge Vault is an installer and maintenance toolkit for a fresh,
+empty Obsidian vault. Its two templates share the same organizing system; only
+the work-directory taxonomy differs:
 
-## Quick start
+- **General** — for ordinary work, life, learning, records, and system rules.
+- **Legal** — for legal-profession work, with a legal work taxonomy.
 
-Create a **new, empty** folder for the Vault. Version 1.2 intentionally refuses
-to install into an existing Vault so it cannot alter existing notes or Obsidian
+The local maintenance program accepts constrained AI organization plans, checks
+them locally, and writes only permitted files. It does not publish your notes or
+use a cloud service run by this project.
+
+## Install
+
+Create a **new, empty folder** for the vault. Version 1.2 deliberately refuses
+to install into an existing vault, so it cannot alter existing notes or Obsidian
 settings.
 
-```sh
+```bash
 git clone https://github.com/songoao25/obsidian-knowledge-vault.git
 cd obsidian-knowledge-vault
 python3 deploy.py
 ```
 
-The installer asks for the template, schedule, provider, and one final local
-approval. It stores API keys only on the user's computer; never paste a key in
-an issue or AI chat.
+The installer asks you to choose a template, schedule, AI provider, and one
+final local approval. You can also download the macOS or Windows package from
+the [latest Release](https://github.com/songoao25/obsidian-knowledge-vault/releases/latest).
+
+## Platforms and AI choices
+
+| Platform | AI choices |
+| --- | --- |
+| macOS | ChatGPT Desktop, DeepSeek, or a user-supplied OpenAI-compatible provider |
+| Windows | DeepSeek or a user-supplied OpenAI-compatible provider |
+
+API keys are requested only through hidden local input and stay in the user's
+local credential store. Never paste a key into an Issue or AI chat.
+
+## Daily use
+
+Put material that needs organization into the chosen inbox, then let the
+schedule you selected run. You can change schedules, AI providers, and local
+rules later without replacing your vault.
+
+For the full workflow, see [Daily use](docs/en/DAILY-USE.md).
 
 ## Documentation
 
 | English | 中文 |
 | --- | --- |
-| [Install](docs/en/INSTALL.md) | [安装](docs/zh-CN/INSTALL.md) |
+| [Installation](docs/en/INSTALL.md) | [安装](docs/zh-CN/INSTALL.md) |
 | [Daily use](docs/en/DAILY-USE.md) | [日常使用](docs/zh-CN/DAILY-USE.md) |
-| [Customize](docs/en/CUSTOMIZATION.md) | [自定义](docs/zh-CN/CUSTOMIZATION.md) |
+| [Customization](docs/en/CUSTOMIZATION.md) | [自定义](docs/zh-CN/CUSTOMIZATION.md) |
 | [Troubleshooting](docs/en/TROUBLESHOOTING.md) | [排错](docs/zh-CN/TROUBLESHOOTING.md) |
 
 ## Privacy and safety
 
-- The repository and release packages contain templates and code only: no
+- This repository and its release packages contain templates and code only—no
   personal notes, credentials, logs, recovery data, or computer-specific paths.
-- Content is sent only to the provider the user actively selects during setup.
-- Do not use this installer on an existing Vault. Existing-Vault migration is
-  deliberately outside v1.2.
-- Report ordinary problems through [Issues](https://github.com/songoao25/obsidian-knowledge-vault/issues), without credentials or real notes.
+- Content is sent only to the provider you actively choose during setup.
+- Existing-vault migration is deliberately outside v1.2. Do not use this
+  installer on an existing vault.
+- For ordinary problems, use
+  [Issues](https://github.com/songoao25/obsidian-knowledge-vault/issues), and
+  never include credentials or real notes.
 
 ## Release files
 
-Versioned macOS and Windows packages and SHA-256 checksums are in
-[`release/`](release/). The GitHub Release contains the same verified files.
+The [v1.2.0 Release](https://github.com/songoao25/obsidian-knowledge-vault/releases/tag/v1.2.0)
+contains macOS and Windows packages plus a SHA-256 checksum file.
 
 ## License
 
-[MIT License](LICENSE)
+[MIT](LICENSE) © 2026 songoao25
