@@ -1,2 +1,2 @@
-0d4fbc9345e354cf2a32b0bc0273c354e04977e44152d488a422df0dda4cee35  obsidian-knowledge-vault-macos-v1.2.0.zip
-f3e58af637e1cd9dfe13ed839439b3de3423a14864fc0c453e288f753a0131bd  obsidian-knowledge-vault-windows-v1.2.0.zip
+4ce56210c4243a97f97aa704b3a4d7964e4d353e88ed70be95cb519cffa41784  obsidian-knowledge-vault-macos-v1.2.0.zip
+3d3d3b46a0924285f197abeb00db2fcbb488b0ae97c9d68981ea626a7461dcc8  obsidian-knowledge-vault-windows-v1.2.0.zip
