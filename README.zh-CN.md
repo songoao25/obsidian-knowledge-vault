@@ -64,7 +64,7 @@ API 密钥只会通过本机隐藏输入请求，并保存在用户自己的本�
 
 ## 发布文件
 
-[v1.2.0 发布页](https://github.com/songoao25/obsidian-knowledge-vault/releases/tag/v1.2.0)提供 macOS、Windows 安装包及 SHA-256 校验清单。
+[v1.2.1 发布页](https://github.com/songoao25/obsidian-knowledge-vault/releases/tag/v1.2.1)提供 macOS、Windows 安装包及 SHA-256 校验清单。
 
 ## 许可证
 

@@ -33,7 +33,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 RUN_HOURS = (8, 11, 14, 17, 20, 23)
 FRONTMATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n?", re.DOTALL)
 WIKILINK_RE = re.compile(r"!\[\[([^\]|#]+)(?:#[^\]]*)?(?:\|[^\]]*)?\]\]")

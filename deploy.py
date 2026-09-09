@@ -30,7 +30,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 LABEL = "com.knowledgevault.obsidian-maintenance"
 RUN_HOURS = (8, 11, 14, 17, 20, 23)
 WINDOWS_PLUGIN_IDS = ("frontmatter-modified-date", "obsidian-auto-organizer")

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Build and privacy-check the two v1.2.0 public installation packages."""
+"""Build and privacy-check the two v1.2.1 public installation packages."""
 from __future__ import annotations
 
 import hashlib
+import os
 import shutil
 import subprocess
 import sys
@@ -12,7 +13,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "1.2.0"
+VERSION = "1.2.1"
 RELEASE = ROOT / "release"
 PAYLOADS = ROOT / "payloads"
 SKIP = shutil.ignore_patterns("__pycache__", ".DS_Store", ".state", ".workbuddy")
@@ -23,6 +24,27 @@ import scan_privacy  # noqa: E402
 
 def copy_tree(source: Path, target: Path) -> None:
     shutil.copytree(source, target, dirs_exist_ok=True, ignore=SKIP)
+
+
+def run_payload_tests(payload: Path, platform: str) -> None:
+    """Run the tests that will actually ship with a platform package.
+
+    A release package is a smaller installation root than this repository, so
+    tests must run after the payload has been assembled.  This catches tests
+    that accidentally depend on release-factory-only files or paths.
+    """
+    test_root = payload / "测试"
+    if not test_root.is_dir():
+        return
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(payload / "程序")
+    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    subprocess.run(
+        [sys.executable, "-m", "unittest", "discover", "-s", str(test_root), "-q"],
+        check=True,
+        env=env,
+    )
+    print(f"PASS package tests: {platform}")
 
 
 def sha256(path: Path) -> str:
@@ -48,6 +70,7 @@ def package(platform: str, temporary: Path) -> Path:
     copy_tree(source, payload)
     for name in ("deploy.py", "README.md", "AGENTS.md", "LICENSE"):
         shutil.copy2(ROOT / name, payload / name)
+    run_payload_tests(payload, platform)
     assert_clean(payload, f"{platform} payload")
     filename = f"obsidian-knowledge-vault-{platform}-v{VERSION}.zip"
     result = temporary / filename

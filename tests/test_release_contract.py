@@ -16,6 +16,16 @@ SPEC.loader.exec_module(deploy)
 
 
 class ReleaseContractTests(unittest.TestCase):
+    def test_release_runtime_versions_are_consistent(self) -> None:
+        root_deploy = (ROOT / "deploy.py").read_text(encoding="utf-8")
+        windows_runtime = (ROOT / "payloads" / "windows" / "维护程序" / "windows_maintenance.py").read_text(encoding="utf-8")
+        builder = (ROOT / "scripts" / "build_release.py").read_text(encoding="utf-8")
+        for source in (root_deploy, windows_runtime, builder):
+            self.assertIn('"1.2.1"', source)
+
+    def test_release_factory_test_is_not_shipped_in_runtime_payload(self) -> None:
+        self.assertFalse((ROOT / "payloads" / "macos" / "测试" / "test_distribution_deploy.py").exists())
+
     def test_both_profiles_exist_for_both_platforms(self) -> None:
         for platform, template_root in (("macos", "资源与模板/初始知识库模板"), ("windows", "知识库模板")):
             for profile in ("general", "legal"):
