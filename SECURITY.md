@@ -13,5 +13,5 @@ report only the behavior and environment version.
 
 ## Supported release
 
-The currently supported public deployment package is v1.2.0 for macOS and
+The currently supported public deployment package is v1.2.1 for macOS and
 Windows.

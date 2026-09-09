@@ -81,7 +81,7 @@ For the full workflow, see [Daily use](docs/en/DAILY-USE.md).
 
 ## Release files
 
-The [v1.2.0 Release](https://github.com/songoao25/obsidian-knowledge-vault/releases/tag/v1.2.0)
+The [v1.2.1 Release](https://github.com/songoao25/obsidian-knowledge-vault/releases/tag/v1.2.1)
 contains macOS and Windows packages plus a SHA-256 checksum file.
 
 ## License
