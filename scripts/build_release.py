@@ -36,6 +36,9 @@ def run_payload_tests(payload: Path, platform: str) -> None:
     test_root = payload / "测试"
     if not test_root.is_dir():
         return
+    if platform == "macos" and sys.platform != "darwin":
+        print(f"SKIP package tests: {platform} (host platform: {sys.platform})")
+        return
     env = os.environ.copy()
     env["PYTHONPATH"] = str(payload / "程序")
     env["PYTHONDONTWRITEBYTECODE"] = "1"
