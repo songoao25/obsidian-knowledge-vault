@@ -52,9 +52,11 @@ the workflows `test.yml` (CI), `codeql.yml`, `privacy-gate.yml`, `release-please
   Release Please recompute a major version from the entire history. Deliberately kept as is.
 - **No `lib/` build artifact**: build output is produced per release and attached to the GitHub
   release instead of being committed to the repository.
-- **Two files still sit in the repository root that belong in subdirectories**: `deploy.py`
-  (belongs under `scripts/`) and `安全审计清单-发布件.md` (belongs under `docs/`). They predate this
-  checklist and are tracked as pending moves.
+- **`deploy.py` still sits in the repository root**: it belongs under `scripts/`, but it is
+  referenced by the shipped installer templates (`payloads/macos/脚本/*.sh.tpl`), the release tests
+  and the user docs, so moving it needs one coordinated change across all of them. Pending.
+- The release security checklist moved out of the repository root on 2026-10-14: it is now
+  `docs/zh-CN/RELEASE-SECURITY-CHECKLIST.md`.
 - **Commits go straight to `main`**: single maintainer, so the standard's "main is entered only
   through pull requests" rule is waived here.
 
