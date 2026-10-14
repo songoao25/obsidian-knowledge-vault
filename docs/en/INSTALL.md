@@ -7,11 +7,14 @@ with existing notes. Install Obsidian and Python 3.11 or later first.
 
 ## Run the installer
 
-Clone the repository or download and unzip the package, then run:
+From a cloned repository, run:
 
 ```sh
-python3 deploy.py
+python3 scripts/deploy.py
 ```
+
+From a downloaded package, unzip it and run `python3 deploy.py` inside the
+extracted top-level folder.
 
 Choose the general or legal template, the run times, and an AI provider. The
 installer displays its plan before changing anything. It stops when the target

@@ -34,7 +34,7 @@ settings.
 ```bash
 git clone https://github.com/songoao25/obsidian-knowledge-vault.git
 cd obsidian-knowledge-vault
-python3 deploy.py
+python3 scripts/deploy.py
 ```
 
 The installer asks you to choose a template, schedule, AI provider, and one

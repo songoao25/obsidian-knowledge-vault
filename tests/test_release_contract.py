@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SPEC = importlib.util.spec_from_file_location("okv_deploy", ROOT / "deploy.py")
+SPEC = importlib.util.spec_from_file_location("okv_deploy", ROOT / "scripts" / "deploy.py")
 deploy = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
 SPEC.loader.exec_module(deploy)
@@ -17,14 +17,29 @@ SPEC.loader.exec_module(deploy)
 
 class ReleaseContractTests(unittest.TestCase):
     def test_release_runtime_versions_are_consistent(self) -> None:
-        root_deploy = (ROOT / "deploy.py").read_text(encoding="utf-8")
+        deploy_source = (ROOT / "scripts" / "deploy.py").read_text(encoding="utf-8")
         windows_runtime = (ROOT / "payloads" / "windows" / "维护程序" / "windows_maintenance.py").read_text(encoding="utf-8")
         builder = (ROOT / "scripts" / "build_release.py").read_text(encoding="utf-8")
-        for source in (root_deploy, windows_runtime, builder):
+        for source in (deploy_source, windows_runtime, builder):
             self.assertIn('"1.2.1"', source)
 
     def test_release_factory_test_is_not_shipped_in_runtime_payload(self) -> None:
         self.assertFalse((ROOT / "payloads" / "macos" / "测试" / "test_distribution_deploy.py").exists())
+
+    def test_deploy_script_resolves_payload_from_the_package_root(self) -> None:
+        """A published package keeps deploy.py beside its payload directories."""
+        with tempfile.TemporaryDirectory() as location:
+            package = Path(location) / "obsidian-knowledge-vault-macos-v1.2.1"
+            (package / "程序").mkdir(parents=True)
+            (package / "deploy.py").write_text("", encoding="utf-8")
+            self.assertEqual(
+                deploy.find_payload_root(package / "deploy.py", "macos"), package.resolve())
+
+    def test_deploy_script_resolves_payload_from_the_repository_root(self) -> None:
+        """In a checkout the script lives in scripts/ and the payload one level up."""
+        payload = deploy.find_payload_root(ROOT / "scripts" / "deploy.py", "macos")
+        self.assertTrue((payload / "程序").is_dir())
+        self.assertTrue((payload / "配置" / "settings.json.tpl").is_file())
 
     def test_both_profiles_exist_for_both_platforms(self) -> None:
         for platform, template_root in (("macos", "资源与模板/初始知识库模板"), ("windows", "知识库模板")):

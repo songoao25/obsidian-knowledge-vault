@@ -19,11 +19,11 @@ Vault. Follow it exactly. Never treat a user's existing Vault as a test target.
 
 ## Installation
 
-From a cloned repository, run `python3 deploy.py`. From a downloaded package,
-unzip it and run `python3 deploy.py` from the extracted top-level folder. The
-installer detects macOS or Windows, performs prerequisite checks, creates the
-chosen empty Vault structure, installs only its own local components, and runs
-verification.
+From a cloned repository, run `python3 scripts/deploy.py`. From a downloaded
+package, unzip it and run `python3 deploy.py` from the extracted top-level
+folder. The installer detects macOS or Windows, performs prerequisite checks,
+creates the chosen empty Vault structure, installs only its own local components,
+and runs verification.
 
 ## Validation and recovery
 
@@ -32,5 +32,7 @@ verification.
   provider check.
 - If installation fails, read the exact failure message, leave the Vault alone,
   and rerun only after the user resolves the reported prerequisite.
-- To stop automation, run `python3 deploy.py --uninstall`; this removes only
-  the scheduled task, never the user's Vault or notes.
+- To stop automation, run the installer with `--uninstall`
+  (`python3 deploy.py --uninstall` in an extracted package, or
+  `python3 scripts/deploy.py --uninstall` in a cloned repository); this removes
+  only the scheduled task, never the user's Vault or notes.

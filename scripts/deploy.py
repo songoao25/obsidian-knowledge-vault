@@ -2,7 +2,8 @@
 """Obsidian Knowledge Vault 跨平台部署脚本。
 
 用法:
-    python3 deploy.py [选项]
+    python3 deploy.py [选项]            （解压后的发布包）
+    python3 scripts/deploy.py [选项]    （克隆的仓库）
 
 一次授权后自动完成：前置条件自检 → 安装 Obsidian（缺失时从官方渠道下载）→
 复制目录框架/维护程序 → 配置定时任务（macOS LaunchAgent / Windows 任务计划程序）→
@@ -321,8 +322,24 @@ def find_payload(base: Path, platform_name: str) -> Path:
             log("ℹ️ 已从发布包解压载荷: %s" % candidates[0].name)
             return roots[0]
     raise DeployError(
-        "找不到部署载荷：请在仓库根目录（有 deploy.py 的目录）或解压后的包内运行；"
-        "或把对应平台的发布包放进 release/ 目录。")
+        "找不到部署载荷：请在解压后的发布包内运行本脚本，或在仓库检出目录运行 "
+        "python3 scripts/deploy.py（脚本会读取仓库根目录 release/ 下的发布包）。")
+
+
+def find_payload_root(script_file: Path, platform_name: str) -> Path:
+    """定位载荷根目录，同时兼容「发布包」与「仓库检出」两种形态。
+
+    - 发布包：deploy.py 位于顶层，载荷（程序/、知识库模板/ 等）与它同级。
+    - 仓库检出：脚本位于 scripts/ 下，载荷在其上一级（release/ 下的发布包）。
+    """
+    here = Path(script_file).resolve().parent
+    for candidate in (here, here.parent):
+        try:
+            return find_payload(candidate, platform_name)
+        except DeployError:
+            continue
+    # 两种形态都不成立时，用脚本自身目录抛出原始提示。
+    return find_payload(here, platform_name)
 
 
 def unique_path(directory: Path, name: str) -> Path:
@@ -1235,8 +1252,7 @@ def main(argv: Optional[List[str]] = None) -> int:
         log("Obsidian Knowledge Vault v%s" % VERSION)
         platform_name = detect_platform(runner)
         log("检测到平台: %s" % ("Windows（演练模式）" if runner.simulate else platform_name))
-        base = Path(__file__).resolve().parent
-        payload = find_payload(base, platform_name)
+        payload = find_payload_root(Path(__file__), platform_name)
         if args.uninstall:
             return cmd_uninstall(runner, platform_name, args)
         if platform_name == "macos":
