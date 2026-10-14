@@ -1,6 +1,7 @@
 # Customization
 
-Rerun `python3 deploy.py` to change the schedule or provider. Use
+Rerun the installer to change the schedule or provider: `python3 deploy.py` in an
+extracted package, or `python3 scripts/deploy.py` in a cloned repository. Use
 `--template general` or `--template legal` only when creating a new empty Vault.
 
 Do not manually add an unapproved directory to the taxonomy while automation is

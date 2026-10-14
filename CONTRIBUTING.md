@@ -52,12 +52,23 @@ the workflows `test.yml` (CI), `codeql.yml`, `privacy-gate.yml`, `release-please
   Release Please recompute a major version from the entire history. Deliberately kept as is.
 - **No `lib/` build artifact**: build output is produced per release and attached to the GitHub
   release instead of being committed to the repository.
-- **`deploy.py` still sits in the repository root**: it belongs under `scripts/`, but it is
-  referenced by the shipped installer templates (`payloads/macos/脚本/*.sh.tpl`), the release tests
-  and the user docs, so moving it needs one coordinated change across all of them. Pending.
+- `deploy.py` moved out of the repository root on 2026-10-14: it is now `scripts/deploy.py`.
+  `scripts/build_release.py` copies it to the top level of the published package, so the documented
+  package command stays `python3 deploy.py` and only the repository-checkout command changes, to
+  `python3 scripts/deploy.py`. The move is safe for people who already installed a package: the
+  shipped installer templates (`payloads/macos/脚本/*.sh.tpl`) mention `deploy.py` only in a
+  provenance comment and never call it, the rendered scripts in the installed project directory read
+  `$PROJECT/程序` and `$PROJECT/脚本` instead, and `deploy.py` itself is not part of the installed
+  payload (`macos_install` / `windows_install` copy only the payload directories).
 - The release security checklist moved out of the repository root on 2026-10-14: it is now
   `docs/zh-CN/RELEASE-SECURITY-CHECKLIST.md`.
-- **Commits go straight to `main`**: single maintainer, so the standard's "main is entered only
-  through pull requests" rule is waived here.
+- **No human approval for the owner's pull requests** (corrected 2026-10-14): an earlier version
+  of this record said commits go straight to `main`. That is no longer true — `main` is protected
+  (required checks `analyze-python`, `release-contract (macos-latest)`,
+  `release-contract (windows-latest)` and `scan`; `enforce_admins` on; force pushes and deletions
+  blocked), so a direct push to `main` is rejected and every change lands through a pull request.
+  Because `required_approving_review_count` is 0 and `auto-merge-own.yml` turns on auto-merge for
+  owner pull requests, the owner's own PRs still merge without a manual click once CI is green.
+  Other people's pull requests stay manual.
 
 Any deviation from the standard belongs in this section, with a reason and a date.

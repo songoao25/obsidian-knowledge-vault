@@ -71,8 +71,12 @@ def package(platform: str, temporary: Path) -> Path:
     source = PAYLOADS / platform
     payload = temporary / platform
     copy_tree(source, payload)
-    for name in ("deploy.py", "README.md", "AGENTS.md", "LICENSE"):
+    # deploy.py lives in scripts/ in this repository, but the published package
+    # keeps it at the top level: the docs and the install flow read
+    # "unzip the package, then run python3 deploy.py".
+    for name in ("README.md", "AGENTS.md", "LICENSE"):
         shutil.copy2(ROOT / name, payload / name)
+    shutil.copy2(ROOT / "scripts" / "deploy.py", payload / "deploy.py")
     run_payload_tests(payload, platform)
     assert_clean(payload, f"{platform} payload")
     filename = f"obsidian-knowledge-vault-{platform}-v{VERSION}.zip"

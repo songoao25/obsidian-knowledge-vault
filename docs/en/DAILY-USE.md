@@ -6,9 +6,11 @@ complete source material by default and does not silently merge notes, rewrite
 core conclusions, or create content in protected manual-only areas.
 
 Review results in `90 系统/94 维护记录`. Use Obsidian normally for writing and
-editing. To stop scheduled automation without deleting your notes, run:
+editing. To stop scheduled automation without deleting your notes, run the
+installer with `--uninstall`:
 
 ```sh
-python3 deploy.py --uninstall
+python3 deploy.py --uninstall          # extracted package
+python3 scripts/deploy.py --uninstall  # cloned repository
 ```
 

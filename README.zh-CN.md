@@ -26,7 +26,7 @@ Obsidian Knowledge Vault 是面向全新空白 Obsidian Vault 的安装与维护
 ```bash
 git clone https://github.com/songoao25/obsidian-knowledge-vault.git
 cd obsidian-knowledge-vault
-python3 deploy.py
+python3 scripts/deploy.py
 ```
 
 安装器会依次让你选择模板、执行时间、AI 服务，并在本机进行一次最终确认。也可以直接在[最新发布页](https://github.com/songoao25/obsidian-knowledge-vault/releases/latest)下载 macOS 或 Windows 安装包。
