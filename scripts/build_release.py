@@ -74,8 +74,12 @@ def package(platform: str, temporary: Path) -> Path:
     # deploy.py lives in scripts/ in this repository, but the published package
     # keeps it at the top level: the docs and the install flow read
     # "unzip the package, then run python3 deploy.py".
-    for name in ("README.md", "AGENTS.md", "LICENSE"):
+    for name in ("README.md", "LICENSE"):
         shutil.copy2(ROOT / name, payload / name)
+    # AGENTS.md is a deployment instruction that ships inside the package, not a
+    # repository instruction file. It lives with the other payload-only assets so
+    # the repository root stays free of agent instruction files (policy 6).
+    shutil.copy2(PAYLOADS / "root-assets" / "AGENTS.md", payload / "AGENTS.md")
     shutil.copy2(ROOT / "scripts" / "deploy.py", payload / "deploy.py")
     run_payload_tests(payload, platform)
     assert_clean(payload, f"{platform} payload")

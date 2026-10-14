@@ -71,4 +71,11 @@ the workflows `test.yml` (CI), `codeql.yml`, `privacy-gate.yml`, `release-please
   owner pull requests, the owner's own PRs still merge without a manual click once CI is green.
   Other people's pull requests stay manual.
 
+- **`AGENTS.md` lives in `payloads/root-assets/` (moved 2026-10-14)**: it is the deployment
+  instruction shipped *inside* the release package for the user's own assistant, not a repository
+  instruction file. The root of a public repository stays free of agent instruction files
+  (`public-repo/policy.md` §6); the 2026-10-14 exception to that rule allows a payload asset when
+  it sits in the payload directory and its purpose is recorded — this bullet is that record.
+  `scripts/build_release.py` copies it to the package root, so the published artifact is unchanged.
+
 Any deviation from the standard belongs in this section, with a reason and a date.
